@@ -3,6 +3,7 @@ name: securedev-estudiante
 services:
   app:
     build: .
+    container_name: securedev-lab-app
     environment:
       DATABASE_PATH: /data/securedev.db
       SECRET_KEY: clave-insegura-solo-laboratorio
@@ -10,6 +11,12 @@ services:
       - app_data:/data
     ports:
       - "127.0.0.1:8000:8000"
+    networks:
+      - securedev-lab-net
 
 volumes:
   app_data:
+
+networks:
+  securedev-lab-net:
+    external: true
